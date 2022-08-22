@@ -1,0 +1,13 @@
+Package: apoyo
+Type: Package
+Title: Helper Functions Us
+Version: 0.1.0
+Authors@R: person("Keith", "Caballero Rodriguez",email = "k.caballerounmsm@gmail.com", role = c("aut", "cre","ctb"))
+Description: Helper functions to descripe data comming with labels or factors based on questions from surveys and other external sources
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: 
+    dplyr,
+    haven,
+    tidyselect
+RoxygenNote: 7.1.2
