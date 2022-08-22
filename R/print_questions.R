@@ -9,8 +9,8 @@
 #' @examples
 #' print_questions(mtcars)
 #'
-print_questions <- function(data) {
-  tibble(
+print_questions <- function(data,save=F) {
+  re <- tibble(
     variable = data %>%
       colnames()
   ) %>%
@@ -20,6 +20,9 @@ print_questions <- function(data) {
         ~attr(pull(data,all_of(.)),"label")
       )
     ) %>%
-    unnest(questions,keep_empty = TRUE) %>%
-    print(n=Inf)
+    unnest(questions,keep_empty = TRUE)
+  re %>% print(n=Inf)
+  if(save){
+    return(re)
+  }
 }
