@@ -9,6 +9,7 @@ Encoding: UTF-8
 Imports: 
     dplyr,
     haven,
+    purrr,
     tidyselect
 RoxygenNote: 7.1.2
 URL: https://github.com/KeithCaballeroRodriguez/apoyo
