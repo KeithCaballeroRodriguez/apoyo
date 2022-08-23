@@ -9,7 +9,7 @@
 #' @examples
 #' print_questions(mtcars)
 #'
-print_questions <- function(data,save=F) {
+print_questions <- function(data,save=F,printed=F) {
   re <- tibble(
     variable = data %>%
       colnames()
@@ -21,8 +21,9 @@ print_questions <- function(data,save=F) {
       )
     ) %>%
     unnest(questions,keep_empty = TRUE)
-  re %>% print(n=Inf)
   if(save){
     return(re)
+  }else{
+    re %>% print(n=Inf)
   }
 }
