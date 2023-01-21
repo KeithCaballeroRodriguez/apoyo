@@ -1,15 +1,4 @@
-#' @title Printing questions and labelled categories
-#' @description This function takes data from labelled column types and print
-#' information from each column.
-#'
-#' @param data Data with labelled column types
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' print_info(mtcars)
-#'
+
 print_info <- function(data,like=""){
 
   columnas <- colnames(data %>% select(where(is.labelled)))
