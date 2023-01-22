@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 
+=======
+#' @title Theme Keith
+#'
+#'
+#' @return
+#' @export
+#'
+#' @examples
+>>>>>>> 3e584a6be32c1091d7f9e650dd3c4fef5998a2e1
 theme_apoyo <- function(fuente="Roboto") {
   theme_light() +
     theme(
