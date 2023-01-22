@@ -1,4 +1,3 @@
-
 theme_apoyo <- function(fuente="") {
   theme_light() +
     theme(
