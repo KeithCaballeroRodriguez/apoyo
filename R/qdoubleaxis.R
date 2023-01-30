@@ -7,7 +7,7 @@ qdoubleaxis <- function(data,x_axis,y_axis,y2_axis,t1,t2,coeff,zero=F,color1='#1
       secondary_column = {{y2_axis}},
       include_y_zero   = zero)
 
-  ggplot(data=datos,aes(x={{x_axis}}))+
+  ggplot(data,aes(x={{x_axis}}))+
     geom_line(aes(y={{y_axis}}),color = color1,linewidth=1.2,alpha=0.8)+
     geom_line(aes(y=transformer$inv_func({{y2_axis}}) ), color = color2 ,linewidth=1.2,alpha=0.8)+
     scale_y_continuous(
@@ -22,3 +22,12 @@ qdoubleaxis <- function(data,x_axis,y_axis,y2_axis,t1,t2,coeff,zero=F,color1='#1
 #
 #
 # qdoubleaxis
+
+# library(tidyverse)
+# library(lubridate)
+# timetk::tk_tbl(datasets::co2) %>%
+#   as_tibble() %>%
+#   mutate(index=as_date(index),value2=runif(468)*((-1)**sample(0:1,468,T)),) %>%
+#   qdoubleaxis(index,value,value2,"a","b",1,zero=T)
+
+
