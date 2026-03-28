@@ -108,3 +108,70 @@ def sav_to_parquet(
     df_trans.to_parquet(f"{path_dir_data}/{nombre_base}.parquet", **parquet_kwargs)
     mv.to_parquet(f"{path_dir_meta}/{nombre_base}.meta_columns.parquet", **parquet_kwargs)
     ml.to_parquet(f"{path_dir_meta}/{nombre_base}.meta_labels.parquet", **parquet_kwargs)
+
+
+def print_variable_info(
+    df_variables: pd.DataFrame,
+    df_etiquetas: pd.DataFrame,
+    like: str = "",
+) -> None:
+    """
+    Imprime en consola el detalle de cada variable y sus etiquetas de valor.
+    Equivalente a print_info() de R (haven/labelled).
+
+    Parameters
+    ----------
+    df_variables : pd.DataFrame
+        Tabla de variables retornada por estandarizacion_metadatos.
+    df_etiquetas : pd.DataFrame
+        Tabla de etiquetas retornada por estandarizacion_metadatos.
+    like : str
+        Filtro por nombre de variable (búsqueda por substring).
+
+    Examples
+    --------
+    >>> df, df_vars, df_labels = estandarizacion_metadatos(df, meta)
+    >>> print_variable_info(df_vars, df_labels, like="edad")
+    """
+    vars_df = df_variables.copy()
+    if like:
+        vars_df = vars_df[vars_df["name"].str.contains(like, case=False)]
+
+    for _, row in vars_df.iterrows():
+        print(f"{row['name']}: {row['description']}")
+        etiq = df_etiquetas[df_etiquetas["name"] == row["name"]]
+        for _, lrow in etiq.iterrows():
+            print(f"\t{lrow['label_value']} - {lrow['label_meaning']}")
+        print("_" * 30)
+
+
+def get_variable_labels(
+    df_variables: pd.DataFrame,
+    as_dataframe: bool = True,
+) -> pd.DataFrame | None:
+    """
+    Retorna o imprime el mapeo variable → descripción/pregunta.
+    Equivalente a get_variable_labels() de R (rename de print_questions).
+
+    Parameters
+    ----------
+    df_variables : pd.DataFrame
+        Tabla de variables retornada por estandarizacion_metadatos.
+    as_dataframe : bool
+        Si True (default), retorna DataFrame. Si False, imprime en consola.
+
+    Returns
+    -------
+    pd.DataFrame | None
+        Columnas: name, description.
+
+    Examples
+    --------
+    >>> df_labels = get_variable_labels(df_vars)
+    >>> get_variable_labels(df_vars, as_dataframe=False)
+    """
+    result = df_variables[["name", "description"]].copy()
+    if as_dataframe:
+        return result
+    for _, row in result.iterrows():
+        print(f"{row['name']}: {row['description']}")
