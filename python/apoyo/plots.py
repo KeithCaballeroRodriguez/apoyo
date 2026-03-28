@@ -20,6 +20,7 @@ def theme_apoyo(font_size: int = 14) -> None:
     >>> plt.plot([1, 2, 3], [1, 4, 9])
     """
     mpl.rcParams.update({
+        "font.family":        "Arial",
         "font.size":          font_size,
         "font.weight":        "bold",
         "axes.titlesize":     font_size,

@@ -1,4 +1,4 @@
-theme_apoyo <- function(fuente="") {
+theme_apoyo <- function(fuente="Arial") {
   theme_light() +
     theme(
       text = element_text(size = 14, face = "bold",family = fuente),
