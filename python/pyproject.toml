@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "apoyo"
+version = "0.1.0"
+description = "Personal analytics utilities"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "sqlalchemy",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+gcp = ["google-cloud-storage", "pyarrow"]
+spss = ["pyreadstat"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apoyo*"]
